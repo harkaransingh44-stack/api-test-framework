@@ -1,0 +1,91 @@
+{
+  "valid": [
+    {
+      "id": "standard_with_breakfast",
+      "payload": {
+        "firstname": "Avery",
+        "lastname": "Tester",
+        "totalprice": 150,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-01-10", "checkout": "2027-01-14"},
+        "additionalneeds": "Breakfast"
+      }
+    },
+    {
+      "id": "no_deposit_no_extras",
+      "payload": {
+        "firstname": "Jordan",
+        "lastname": "Lee",
+        "totalprice": 89,
+        "depositpaid": false,
+        "bookingdates": {"checkin": "2027-03-01", "checkout": "2027-03-02"}
+      }
+    },
+    {
+      "id": "unicode_name",
+      "payload": {
+        "firstname": "Zoë",
+        "lastname": "Núñez",
+        "totalprice": 420,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-06-15", "checkout": "2027-06-20"},
+        "additionalneeds": "Late checkout"
+      }
+    }
+  ],
+  "edge_cases": [
+    {
+      "id": "missing_firstname",
+      "note": "Required field removed.",
+      "payload": {
+        "lastname": "Tester",
+        "totalprice": 150,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-01-10", "checkout": "2027-01-14"}
+      }
+    },
+    {
+      "id": "missing_bookingdates",
+      "note": "Nested required object removed.",
+      "payload": {
+        "firstname": "Avery",
+        "lastname": "Tester",
+        "totalprice": 150,
+        "depositpaid": true
+      }
+    },
+    {
+      "id": "checkout_before_checkin",
+      "note": "Bad date range. Record what the API actually does - it may accept it.",
+      "payload": {
+        "firstname": "Avery",
+        "lastname": "Tester",
+        "totalprice": 150,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-01-14", "checkout": "2027-01-10"}
+      }
+    },
+    {
+      "id": "negative_price",
+      "note": "Negative total price. Record what the API actually does.",
+      "payload": {
+        "firstname": "Avery",
+        "lastname": "Tester",
+        "totalprice": -1,
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-01-10", "checkout": "2027-01-14"}
+      }
+    },
+    {
+      "id": "price_as_string",
+      "note": "Wrong type for totalprice.",
+      "payload": {
+        "firstname": "Avery",
+        "lastname": "Tester",
+        "totalprice": "one hundred",
+        "depositpaid": true,
+        "bookingdates": {"checkin": "2027-01-10", "checkout": "2027-01-14"}
+      }
+    }
+  ]
+}
