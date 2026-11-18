@@ -36,7 +36,8 @@
   "edge_cases": [
     {
       "id": "missing_firstname",
-      "note": "Required field removed.",
+      "note": "Required field removed. This API returns 500 instead of 400.",
+      "expected_status": 500,
       "payload": {
         "lastname": "Tester",
         "totalprice": 150,
@@ -46,7 +47,8 @@
     },
     {
       "id": "missing_bookingdates",
-      "note": "Nested required object removed.",
+      "note": "Nested required object removed. This API returns 500 instead of 400.",
+      "expected_status": 500,
       "payload": {
         "firstname": "Avery",
         "lastname": "Tester",
@@ -56,7 +58,8 @@
     },
     {
       "id": "checkout_before_checkin",
-      "note": "Bad date range. Record what the API actually does - it may accept it.",
+      "note": "Invalid date range. This teaching API accepts it (200) instead of rejecting it.",
+      "expected_status": 200,
       "payload": {
         "firstname": "Avery",
         "lastname": "Tester",
@@ -67,7 +70,8 @@
     },
     {
       "id": "negative_price",
-      "note": "Negative total price. Record what the API actually does.",
+      "note": "Negative total price. This teaching API accepts it (200) instead of rejecting it.",
+      "expected_status": 200,
       "payload": {
         "firstname": "Avery",
         "lastname": "Tester",
@@ -78,7 +82,9 @@
     },
     {
       "id": "price_as_string",
-      "note": "Wrong type for totalprice.",
+      "note": "Wrong type for totalprice. This API returns 200 and stores totalprice as null.",
+      "expected_status": 200,
+      "expect_totalprice_null": true,
       "payload": {
         "firstname": "Avery",
         "lastname": "Tester",
