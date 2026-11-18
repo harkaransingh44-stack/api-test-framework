@@ -13,7 +13,7 @@ permissions:
 jobs:
   api:
     name: API tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
 
     steps:
@@ -54,7 +54,7 @@ jobs:
 
   ui:
     name: UI tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
 
     steps:
